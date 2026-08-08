@@ -8,7 +8,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/<you>/crossplane-gitops-aws.git
+    repoURL: https://github.com/shwetagade1998/crossplane-gitops-aws.git
     targetRevision: main
     path: compositions
   destination:
