@@ -1,0 +1,8 @@
+apiVersion: storage.example.org/v1alpha1
+kind: Bucket
+metadata:
+  name: my-first-bucket
+  namespace: default
+spec:
+  parameters:
+    region: us-east-1
