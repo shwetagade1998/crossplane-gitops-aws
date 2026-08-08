@@ -8,14 +8,22 @@ spec:
   compositeTypeRef:
     apiVersion: storage.example.org/v1alpha1
     kind: XBucket
-  resources:
-    - name: s3bucket
-      base:
-        apiVersion: s3.aws.upbound.io/v1beta1
-        kind: Bucket
-        spec:
-          forProvider:
-            region: us-east-1
-      patches:
-        - fromFieldPath: "spec.parameters.region"
-          toFieldPath: "spec.forProvider.region"
+  mode: Pipeline
+  pipeline:
+    - step: patch-and-transform
+      functionRef:
+        name: function-patch-and-transform
+      input:
+        apiVersion: pt.fn.crossplane.io/v1beta1
+        kind: Resources
+        resources:
+          - name: s3bucket
+            base:
+              apiVersion: s3.aws.upbound.io/v1beta1
+              kind: Bucket
+              spec:
+                forProvider:
+                  region: us-east-1
+            patches:
+              - fromFieldPath: "spec.parameters.region"
+                toFieldPath: "spec.forProvider.region"
